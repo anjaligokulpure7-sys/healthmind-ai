@@ -1,1 +1,4 @@
 com/healthmind/user/UserServiceApplication.class
+com/healthmind/user/entity/User$UserBuilder.class
+com/healthmind/user/entity/User.class
+com/healthmind/user/entity/Role.class
