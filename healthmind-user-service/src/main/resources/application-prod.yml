@@ -1,0 +1,55 @@
+# ══════════════════════════════════════════════
+# HEALTHMIND USER SERVICE — PROD Configuration
+# Active when: spring.profiles.active=prod
+# ══════════════════════════════════════════════
+
+server:
+  port: 8081
+  # SSL would be configured here in real production
+
+spring:
+
+  # PostgreSQL — production database
+  # Values come from environment variables
+  # NEVER hardcode prod credentials ❌
+  datasource:
+    url: ${DB_URL}                 # set as environment variable
+    username: ${DB_USERNAME}       # set as environment variable
+    password: ${DB_PASSWORD}       # set as environment variable
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20        # larger pool for prod
+      minimum-idle: 5
+      connection-timeout: 30000
+      pool-name: UserServiceProdPool
+
+  # JPA — prod settings
+  jpa:
+    hibernate:
+      ddl-auto: validate           # NEVER update in prod!
+      # validate only — safer
+    show-sql: false                # hide SQL in prod
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # Redis — production
+  data:
+    redis:
+      host: ${REDIS_HOST}          # environment variable
+      port: ${REDIS_PORT:6379}     # env var with default
+      password: ${REDIS_PASSWORD}  # environment variable
+      timeout: 2000ms
+
+# JWT — prod uses strong secret from env variable
+jwt:
+  secret: ${JWT_SECRET}            # environment variable
+  access-token-expiry: 900000      # 15 minutes
+  refresh-token-expiry: 604800000  # 7 days
+
+# Logging — minimal in prod
+logging:
+  level:
+    com.healthmind: INFO           # only important logs
+    org.springframework: WARN      # only warnings
+    org.hibernate: WARN            # hide SQL completely
