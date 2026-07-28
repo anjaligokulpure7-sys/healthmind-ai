@@ -1,3 +1,6 @@
 /Users/anjali/healthmind-ai/healthmind-user-service/src/main/java/com/healthmind/user/entity/User.java
 /Users/anjali/healthmind-ai/healthmind-user-service/src/main/java/com/healthmind/user/UserServiceApplication.java
 /Users/anjali/healthmind-ai/healthmind-user-service/src/main/java/com/healthmind/user/entity/Role.java
+/Users/anjali/healthmind-ai/healthmind-user-service/src/main/java/com/healthmind/user/dto/AuthResponse.java
+/Users/anjali/healthmind-ai/healthmind-user-service/src/main/java/com/healthmind/user/repository/UserRepository.java
+/Users/anjali/healthmind-ai/healthmind-user-service/src/main/java/com/healthmind/user/dto/RegisterRequest.java

@@ -1,4 +1,8 @@
 com/healthmind/user/UserServiceApplication.class
 com/healthmind/user/entity/User$UserBuilder.class
 com/healthmind/user/entity/User.class
+com/healthmind/user/dto/AuthResponse.class
 com/healthmind/user/entity/Role.class
+com/healthmind/user/repository/UserRepository.class
+com/healthmind/user/dto/AuthResponse$AuthResponseBuilder.class
+com/healthmind/user/dto/RegisterRequest.class
