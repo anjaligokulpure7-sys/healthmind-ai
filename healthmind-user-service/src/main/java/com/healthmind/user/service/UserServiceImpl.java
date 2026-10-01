@@ -11,7 +11,6 @@ import com.healthmind.user.repository.UserRepository;
 import com.healthmind.user.validation.UserValidation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +25,7 @@ public class UserServiceImpl implements UserService{
     private final UserEventPublisher eventPublisher;
 
     @Transactional
+    @Override
     public AuthResponse register(ServiceRequest<RegisterRequest> request) {
 
         RegisterRequest payload = request.getPayload();
