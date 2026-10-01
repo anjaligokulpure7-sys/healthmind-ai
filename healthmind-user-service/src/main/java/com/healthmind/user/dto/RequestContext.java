@@ -14,10 +14,10 @@ import java.util.UUID;
 @Builder
 public class RequestContext {
 
-    private UUID requestID;
+    private UUID requestId;
     private Instant requestTime;
     private String clientIp;
     private String userAgent;
-    private String correlationID;
+    private String correlationId;
 
 }
