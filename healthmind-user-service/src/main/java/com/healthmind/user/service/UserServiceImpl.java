@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService{
         RequestContext context  =  request.getContext();
         String correlationId = context.getCorrelationId();
 
-        log.info("Registration flow started for email: {}", correlationId, payload.getEmail());
+        log.info("[{}] Registration flow started for email: {}", correlationId, payload.getEmail());
 
         validationService.validateRegistration(payload, correlationId);
         User user = userMapper.toEntity(payload);

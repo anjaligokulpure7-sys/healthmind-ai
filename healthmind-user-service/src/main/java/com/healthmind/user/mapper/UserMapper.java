@@ -6,8 +6,9 @@ import com.healthmind.user.entity.Role;
 import com.healthmind.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
-
+@Component
 @RequiredArgsConstructor
 public class UserMapper {
 
@@ -17,7 +18,7 @@ public class UserMapper {
                 .fullName(request.getFullName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(String.valueOf(Role.PATIENT))
+                .role((Role.PATIENT))
                 .build();
     }
 
@@ -25,7 +26,7 @@ public class UserMapper {
         return AuthResponse.builder()
                 .email(user.getEmail())
                 .fullName(user.getFullName())
-                .role(user.getRole())
+                .role(user.getRole().name())
                 .tokenType("Bearer")
                 .accessToken("JWT_COMING_SOON")
                 .build();

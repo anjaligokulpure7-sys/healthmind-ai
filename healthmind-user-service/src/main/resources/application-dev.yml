@@ -1,55 +1,51 @@
-# ══════════════════════════════════════════════
-# HEALTHMIND USER SERVICE — DEV Configuration
-# Active when: spring.profiles.active=dev
-# ══════════════════════════════════════════════
-
 server:
   port: 8081
 
 spring:
-
-  # PostgreSQL — local Docker container
   datasource:
     url: jdbc:postgresql://localhost:5432/healthmind
     username: healthmind
     password: healthmind123
     driver-class-name: org.postgresql.Driver
     hikari:
-      maximum-pool-size: 5        # small pool for dev
+      maximum-pool-size: 5
       minimum-idle: 2
       connection-timeout: 20000
       pool-name: UserServiceDevPool
 
-  # JPA — dev settings
+  security:                    # ← spring ke andar, datasource ke bahar
+    user:
+      name: user
+      password: disabled
+
   jpa:
     hibernate:
-      ddl-auto: update            # auto create/update tables
-    show-sql: true                # show SQL in console
+      ddl-auto: update
+    show-sql: true
     properties:
       hibernate:
-        format_sql: true          # pretty print SQL
+        format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
-  # Redis — local Docker container
-  data:
-    redis:
-      host: localhost
-      port: 6379
-      password: healthmind123
-      timeout: 2000ms
-
-# JWT settings for dev
 jwt:
   secret: devSecretKey404E635266556A586E3272357538782F413F442847284862
-  access-token-expiry: 900000      # 15 minutes in milliseconds
-  refresh-token-expiry: 604800000  # 7 days in milliseconds
+  access-token-expiry: 900000
+  refresh-token-expiry: 604800000
 
-# Logging — verbose in dev
 logging:
   level:
-    com.healthmind: DEBUG          # our code → detailed logs
-    org.springframework.security: DEBUG  # security logs
-    org.hibernate.SQL: DEBUG       # SQL logs
-    org.hibernate.type: TRACE      # SQL parameter values
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    com.healthmind: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  health:
+    redis:
+      enabled: false          # ← yeh add karo

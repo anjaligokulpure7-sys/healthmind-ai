@@ -21,7 +21,7 @@ public class UserEventPublisher {
                     .userId(user.getId())
                     .email(user.getEmail())
                     .fullName(user.getFullName())
-                    .role(user.getRole())
+                    .role(user.getRole().name())
                     .correlationId(correlationId)
                     .build();
 
